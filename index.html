@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviço DDoS</title>
+    <style>
+        body {
+            background-color: #4B0082; /* Roxo */
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0 10px; /* Para evitar corte em telas pequenas */
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #6A0DAD; /* Roxo mais claro */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .wave-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+            font-size: calc(1.5rem + 1vw); /* Tamanho de fonte adaptável para mobile */
+        }
+
+        .static-text {
+            font-size: 18px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        span {
+            display: inline-block;
+            transition: transform 0.1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="wave-text" id="waveText">Parabéns!</h1>
+        <p class="static-text">Você contratou o serviço DDoS.</p>
+        <p class="static-text">Você está protegido.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const text = document.getElementById('waveText');
+            const characters = text.innerText.split('');
+            text.innerHTML = ''; // Limpa o conteúdo do elemento
+
+            // Envolve cada caractere em um span
+            characters.forEach((char, index) => {
+                const span = document.createElement('span');
+                span.innerText = char;
+                span.style.position = 'relative';
+                text.appendChild(span);
+            });
+
+            const spans = text.querySelectorAll('span');
+
+            // Função de animação de onda
+            function animateWave() {
+                const time = Date.now() / 1000; // Tempo em segundos
+                spans.forEach((span, index) => {
+                    const offset = Math.sin(index * 0.5 + time) * 10;
+                    span.style.transform = translateY(${offset}px);
+                });
+
+                requestAnimationFrame(animateWave);
+            }
+
+            // Inicia a animação
+            animateWave();
+        });
+    </script>
+</body>
+</html>
